@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Digest – A Survey on Machine Reading Comprehension: Tasks, Evaluation Metrics, and Benchmark Datasets | Yu Yang’s Research Log</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Digest – A Survey on Machine Reading Comprehension: Tasks, Evaluation Metrics, and Benchmark Datasets" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A Survey on Machine Reading Comprehension: Tasks, Evaluation Metrics, and Benchmark Datasets (Zeng et al., 2020)." />
+<meta property="og:description" content="A Survey on Machine Reading Comprehension: Tasks, Evaluation Metrics, and Benchmark Datasets (Zeng et al., 2020)." />
+<link rel="canonical" href="https://yuyangyy.com/researchlog/nlp/mrc/2021/01/19/a-survey-on-mrc.html" />
+<meta property="og:url" content="https://yuyangyy.com/researchlog/nlp/mrc/2021/01/19/a-survey-on-mrc.html" />
+<meta property="og:site_name" content="Yu Yang’s Research Log" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-01-19T18:51:00-06:00" />
+<script type="application/ld+json">
+{"url":"https://yuyangyy.com/researchlog/nlp/mrc/2021/01/19/a-survey-on-mrc.html","@type":"BlogPosting","headline":"Digest – A Survey on Machine Reading Comprehension: Tasks, Evaluation Metrics, and Benchmark Datasets","dateModified":"2021-01-19T18:51:00-06:00","datePublished":"2021-01-19T18:51:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://yuyangyy.com/researchlog/nlp/mrc/2021/01/19/a-survey-on-mrc.html"},"description":"A Survey on Machine Reading Comprehension: Tasks, Evaluation Metrics, and Benchmark Datasets (Zeng et al., 2020).","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/researchlog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://yuyangyy.com/researchlog/feed.xml" title="Yu Yang's Research Log" /><link rel="shortcut icon" type="image/x-icon" href="/researchlog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/researchlog/">Yu Yang&#39;s Research Log</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/researchlog/about/">About Me</a><a class="page-link" href="/researchlog/search/">Search</a><a class="page-link" href="/researchlog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Digest -- A Survey on Machine Reading Comprehension: Tasks, Evaluation Metrics, and Benchmark Datasets</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-01-19T18:51:00-06:00" itemprop="datePublished">
+        Jan 19, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      3 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/researchlog/categories/#NLP">NLP</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/researchlog/categories/#MRC">MRC</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><a href="https://arxiv.org/abs/2006.11880">A Survey on Machine Reading Comprehension: Tasks, Evaluation Metrics, and Benchmark Datasets</a>  <a class="citation" href="#zeng2020survey">(Zeng et al., 2020)</a>.</p>
+
+<h2 id="summary">Summary</h2>
+<p>This paper provides a comprehensive survey on MRC tasks, evaluation metrics, and existing benchmark datasets. I find the <em>Tasks</em> section and the <em>Open Issues</em> section most helpful.</p>
+
+<h3 id="tasks">Tasks</h3>
+
+<ol>
+  <li>a definition of typical MRC tasks is given, which can be seen as a supervised problem: (context, question -&gt; answer).</li>
+  <li>concept clarification about MRC
+    <ul>
+      <li>multi-modal MRC vs. textual MRC: multi-modal MRC also involves images and videos, such as RecipeQA and MovieQA.</li>
+      <li>MRC vs. QA:
+        <ul>
+          <li>These two tasks are not subsets of one another.</li>
+          <li>Some MRC may be seen as a special case QA, in that QA can also be open-domain and that QA can also be solved by rule-based method, information retrival method and knowledge-based method.</li>
+          <li>On the other hand, just like human, reading comhension can be about giving correct answers to questions, and can also be about asking the right or sensible questions given the context. And in multi-modal MRC, QA is just one part of it, and we also need CV.</li>
+        </ul>
+      </li>
+      <li>MRC vs. NLP. Syntax information can help with MT, and some MRC models can be used in NLI as well (ex. SAN). (Need to figure out the definitions of NLP and NLI.)</li>
+    </ul>
+  </li>
+  <li>Classification of MRC Tasks (clear and well-defined)
+    <ul>
+      <li>type of corpus: multi-modal, textual</li>
+      <li>type of questions: cloze style, natural, synthetic</li>
+      <li>type of answers: natural, multiple choice</li>
+      <li>source of answers: span, free-form</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="benchmark-datasets">Benchmark Datasets</h3>
+
+<p>In the <em>Benchmark Dataset</em> section, the authors list almost all available datasets and they kindly provide a website summarizing all the datasets. One good feature I like the most is the prerequisite skills (Table 8) and an overview of the characterisitcs of each dataset (Table 10). The prerequisite skills may provide some ideas on building new models and interpretation. And among the characteristics, I am the most interested in <em>Complex Reasoning</em>.</p>
+
+<p>I checked most of them and found that some of them were not active in these two years. I hereby list the ones that I find active and interesting and also with leaderboard. I care about leaderboard is because I want to check the gap between the state-of-art of human performance to see further improvement potential.</p>
+
+<ul>
+  <li><a href="https://leaderboard.allenai.org/arc/submissions/public">ARC</a>: commonsense knowledge and complex reasoning</li>
+  <li><a href="https://leaderboard.allenai.org/open_book_qa/submissions/public">OpenBookQA</a>: commonsense knowledge</li>
+  <li><a href="https://sheng-z.github.io/ReCoRD-explorer/">ReCoRD</a>  (part of SuperGLUE now): commonsense knowledge</li>
+  <li><a href="https://hotpotqa.github.io">HotpotQA</a></li>
+  <li><a href="https://leaderboard.allenai.org/scitail/submissions/public">SciTail</a></li>
+  <li><a href="https://leaderboard.allenai.org/drop/submissions/public">DROP</a>: complex reasonsing</li>
+  <li><a href="http://www.qizhexie.com/data/RACE_leaderboard.html">RACE</a>: passage reading comprehension from middle- and high-school English exams. Involve complex reasoning. I am intersted in this dataset since the questions in the exams are usually made up by experts and should have higher quality.</li>
+  <li><a href="https://competitions.codalab.org/competitions/17208#results">TriviaQA</a></li>
+  <li><a href="https://rajpurkar.github.io/SQuAD-explorer/">SQuAD</a></li>
+  <li><a href="https://stanfordnlp.github.io/coqa/">CoQA</a>: conversational QA</li>
+  <li><a href="https://super.gluebenchmark.com/leaderboard">SuperGLUE</a></li>
+</ul>
+
+<p>In these leaderboards, UnifiedQA <a class="citation" href="#khashabi2020unifiedqa">(Khashabi et al., 2020)</a>, XLNet <a class="citation" href="#yang2019xlnet">(Yang et al., 2019)</a>, ALBERT <a class="citation" href="#lan2019albert">(Lan et al., 2019)</a> , RoBERTa <a class="citation" href="#liu2019roberta">(Liu et al., 2019)</a> , T5 <a class="citation" href="#raffel2019exploring">(Raffel et al., 2019)</a> , and DeBERTa <a class="citation" href="#he2020deberta">(He et al., 2020)</a>  are models that achieve good results.</p>
+
+<h3 id="open-issues">Open Issues</h3>
+
+<p>In the <em>Open Issues</em> section, the authors think multi-modal MRC, commonsense knowledge, complex reasoning, robustness, and interpretability is worth investigation.</p>
+
+<h2 id="related-topics-to-read-next">Related topics to read next</h2>
+<ul>
+  <li>UnifiedQA <a class="citation" href="#khashabi2020unifiedqa">(Khashabi et al., 2020)</a></li>
+  <li>XLNet <a class="citation" href="#yang2019xlnet">(Yang et al., 2019)</a></li>
+  <li>ALBERT <a class="citation" href="#lan2019albert">(Lan et al., 2019)</a></li>
+</ul>
+
+<h2 id="references">References</h2>
+
+<!-- <a class="citation" href="#"></a> -->
+
+<ol class="bibliography"><li><span id="zeng2020survey">Zeng, C., Li, S., Li, Q., Hu, J., &amp; Hu, J. (2020). A Survey on Machine Reading Comprehension—Tasks, Evaluation Metrics and Benchmark Datasets. <i>Applied Sciences</i>, <i>10</i>(21), 7640.</span></li>
+<li><span id="khashabi2020unifiedqa">Khashabi, D., Khot, T., Sabharwal, A., Tafjord, O., Clark, P., &amp; Hajishirzi, H. (2020). Unifiedqa: Crossing format boundaries with a single qa system. <i>ArXiv Preprint ArXiv:2005.00700</i>.</span></li>
+<li><span id="yang2019xlnet">Yang, Z., Dai, Z., Yang, Y., Carbonell, J., Salakhutdinov, R. R., &amp; Le, Q. V. (2019). Xlnet: Generalized autoregressive pretraining for language understanding. <i>Advances in Neural Information Processing Systems</i>, 5753–5763.</span></li>
+<li><span id="lan2019albert">Lan, Z., Chen, M., Goodman, S., Gimpel, K., Sharma, P., &amp; Soricut, R. (2019). Albert: A lite bert for self-supervised learning of language representations. <i>ArXiv Preprint ArXiv:1909.11942</i>.</span></li>
+<li><span id="liu2019roberta">Liu, Y., Ott, M., Goyal, N., Du, J., Joshi, M., Chen, D., Levy, O., Lewis, M., Zettlemoyer, L., &amp; Stoyanov, V. (2019). Roberta: A robustly optimized bert pretraining approach. <i>ArXiv Preprint ArXiv:1907.11692</i>.</span></li>
+<li><span id="raffel2019exploring">Raffel, C., Shazeer, N., Roberts, A., Lee, K., Narang, S., Matena, M., Zhou, Y., Li, W., &amp; Liu, P. J. (2019). Exploring the limits of transfer learning with a unified text-to-text transformer. <i>ArXiv Preprint ArXiv:1910.10683</i>.</span></li>
+<li><span id="he2020deberta">He, P., Liu, X., Gao, J., &amp; Chen, W. (2020). DeBERTa: Decoding-enhanced BERT with Disentangled Attention. <i>ArXiv Preprint ArXiv:2006.03654</i>.</span></li></ol>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="yuyangstatistics/researchlog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/researchlog/nlp/mrc/2021/01/19/a-survey-on-mrc.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/researchlog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/researchlog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/researchlog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Statistics Ph.D. student/ Yu Yang. My blog about paper reading, research ideas, and code.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/yuyangstatistics" title="yuyangstatistics"><svg class="svg-icon grey"><use xlink:href="/researchlog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/yuyangstat" title="yuyangstat"><svg class="svg-icon grey"><use xlink:href="/researchlog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

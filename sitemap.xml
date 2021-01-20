@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>https://yuyangstatistics.github.io/researchlog/markdown/2020/01/14/test-markdown-post.html</loc>
+<loc>https://yuyangyy.com/researchlog/markdown/2020/01/14/test-markdown-post.html</loc>
 <lastmod>2020-01-14T00:00:00-06:00</lastmod>
 </url>
 <url>
-<loc>https://yuyangstatistics.github.io/researchlog/jupyter/2020/02/20/test.html</loc>
+<loc>https://yuyangyy.com/researchlog/jupyter/2020/02/20/test.html</loc>
 <lastmod>2020-02-20T00:00:00-06:00</lastmod>
 </url>
 <url>
-<loc>https://yuyangstatistics.github.io/researchlog/about/</loc>
+<loc>https://yuyangyy.com/researchlog/nlp/mrc/2021/01/19/a-survey-on-mrc.html</loc>
+<lastmod>2021-01-19T18:51:00-06:00</lastmod>
 </url>
 <url>
-<loc>https://yuyangstatistics.github.io/researchlog/</loc>
+<loc>https://yuyangyy.com/researchlog/about/</loc>
 </url>
 <url>
-<loc>https://yuyangstatistics.github.io/researchlog/search/</loc>
+<loc>https://yuyangyy.com/researchlog/</loc>
 </url>
 <url>
-<loc>https://yuyangstatistics.github.io/researchlog/categories/</loc>
+<loc>https://yuyangyy.com/researchlog/search/</loc>
+</url>
+<url>
+<loc>https://yuyangyy.com/researchlog/categories/</loc>
 </url>
 </urlset>
