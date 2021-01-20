@@ -4,8 +4,10 @@ title: About Me
 permalink: /about/
 ---
 
-This website is powered by **[fastpages](https://github.com/fastai/fastpages)** [^1].
+Hi, I am Yu Yang, a third-year Ph.D. student in Statistics. I am interested in 
+Natural Language Processing and Machine Learning. 
 
+This is my blog about paper reading digest, research ideas, and code. 
+You may also visit my [homepage](https://yuyangyy.com) and [personal blog](https://yuyangyy.com/blog/).
 
-
-[^1]:a blogging platform that natively supports Jupyter notebooks in addition to other formats.
+Happy reading!
