@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Digest – Commonsense reasoning and commonsense knowledge in artificial intelligence | Yu Yang’s Research Log</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Digest – Commonsense reasoning and commonsense knowledge in artificial intelligence" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Commonsense reasoning and commonsense knowledge in artificial intelligence (Davis &amp; Marcus, 2015)." />
+<meta property="og:description" content="Commonsense reasoning and commonsense knowledge in artificial intelligence (Davis &amp; Marcus, 2015)." />
+<link rel="canonical" href="https://yuyangyy.com/researchlog/nlp/mrc/2021/01/21/commonse-reasoining-in-ai.html" />
+<meta property="og:url" content="https://yuyangyy.com/researchlog/nlp/mrc/2021/01/21/commonse-reasoining-in-ai.html" />
+<meta property="og:site_name" content="Yu Yang’s Research Log" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-01-21T09:18:00-06:00" />
+<script type="application/ld+json">
+{"url":"https://yuyangyy.com/researchlog/nlp/mrc/2021/01/21/commonse-reasoining-in-ai.html","@type":"BlogPosting","headline":"Digest – Commonsense reasoning and commonsense knowledge in artificial intelligence","dateModified":"2021-01-21T09:18:00-06:00","datePublished":"2021-01-21T09:18:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://yuyangyy.com/researchlog/nlp/mrc/2021/01/21/commonse-reasoining-in-ai.html"},"description":"Commonsense reasoning and commonsense knowledge in artificial intelligence (Davis &amp; Marcus, 2015).","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/researchlog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://yuyangyy.com/researchlog/feed.xml" title="Yu Yang's Research Log" /><link rel="shortcut icon" type="image/x-icon" href="/researchlog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/researchlog/">Yu Yang&#39;s Research Log</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/researchlog/about/">About Me</a><a class="page-link" href="/researchlog/search/">Search</a><a class="page-link" href="/researchlog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Digest -- Commonsense reasoning and commonsense knowledge in artificial intelligence</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-01-21T09:18:00-06:00" itemprop="datePublished">
+        Jan 21, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      2 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/researchlog/categories/#NLP">NLP</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/researchlog/categories/#MRC">MRC</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><a href="">Commonsense reasoning and commonsense knowledge in artificial intelligence</a>  <a class="citation" href="#davis2015commonsense">(Davis &amp; Marcus, 2015)</a>.</p>
+
+<h2 id="summary">Summary</h2>
+<p>This is a very good review paper on commonsense knowledge published on 2015. It was cited by many commonsense related papers. It covers the importance of commonsense knowledge, the objectives, the difficulties, current(by then) approaches and future directions. The illustraing examples are very helpful to enhance readers’ understanding. It is worth special attention to the challenges part.</p>
+
+<h3 id="commonsense-in-intelligent-tasks">Commonsense in Intelligent Tasks</h3>
+<ul>
+  <li>NLP, especially reference resolution</li>
+  <li>CV, such as recognize objects just by context. (recognize a table even we only see the table cloth.)</li>
+  <li>Robotics, how to make sensible actions</li>
+</ul>
+
+<h3 id="successes-in-automated-commonsense-reasoning">Successes in Automated Commonsense Reasoning</h3>
+<ul>
+  <li>taxonomic reasoning: (1) can use transitivity of categories and inheritance of properties; (2) not hard for straightforward taxonomy structure, but can be problematic when categories overlap; (3) used in Web mining systems.</li>
+  <li>temporal reasoning: can be reduced to solving systems of linear inequalities. The main difficulty lies in the interpretation of time (or assigning timestamps to events) in NLP, in that it is context dependent.</li>
+  <li>Action and change: has applications similar to recipeQA, and limited success in text.</li>
+  <li>Qualitative reasoning: reason the direction of change in interrelated quantities, ex. pressure will go up if the temperature goes up in a closed container.</li>
+</ul>
+
+<h3 id="challenges-in-automating-commonsense-reasoning">Challenges in Automating Commonsense Reasoning</h3>
+<ol>
+  <li>lack of a complete understanding of some domains, ex. psychology, biology, social instutions.</li>
+  <li>intuitive situations can be logically complex, ex. understand the behaviour and intention of a character in movies.</li>
+  <li>plausible reasoning. Commonsense reasoning might be stochastic in nature.</li>
+  <li>the long-tail issue: some categories show up rarely.
+    <ul>
+      <li>the margin profit for building a KB would then be large.</li>
+      <li>in my opinion, the long-tail issue depends on the abstraction level, which in turn is also difficult to set up consistently in a KB.</li>
+    </ul>
+  </li>
+  <li>difficulty to discern the proper level of abstraction</li>
+  <li>projects that requires longer time to see the payoffs are usually less appealing. (What an insight!)</li>
+</ol>
+
+<h3 id="objectives">Objectives</h3>
+<p>I pick up the ones that I feel are applicable to NLP here.</p>
+<ul>
+  <li>Plausible inference</li>
+  <li>Range of reasoning modes, such as explanation, gen- eralization, abstraction, analogy, and simulation. This can be a direction to work on.</li>
+  <li>Analysis of fundamental domains, such as intuive physics and intuitive psychology.</li>
+  <li>Cognitive modeling. Utilize the theories of how human do commonsense reasoning.</li>
+</ul>
+
+<h3 id="approaches-and-techniques">Approaches and Techniques</h3>
+<p>To build a KB</p>
+<ol>
+  <li>mathematically grounded</li>
+  <li>use KB from informal sources, such as stories and anecdotes</li>
+  <li>Web mining. The issue is severe confusions and inconsistencies.</li>
+  <li>Crowd sourcing. Again, inconsistency.</li>
+</ol>
+
+<h3 id="future-directions">Future Directions</h3>
+<ol>
+  <li>integrate mathematical logic with Web mining.</li>
+  <li>investigate how facts gathered from Web mining can con- strain the development of mathemati- cally grounded theories.</li>
+  <li>consider other modes of reasoning: analogy, fram-based reasoning, abstraction, conjecture, explanation.</li>
+  <li>use cognitive science.</li>
+</ol>
+
+<h2 id="related-topics-to-read">Related topics to read</h2>
+<ul>
+  <li><a href="https://homes.cs.washington.edu/~msap/acl2020-commonsense/">ACL 2020 Commonsense Tutorial (T6)</a></li>
+  <li>description logic, an extension of baisc inheritance structure</li>
+  <li><a href="https://arxiv.org/pdf/1801.00631.pdf">Deep Learning: A Critical Appraisal</a></li>
+  <li>frame-based reasoning</li>
+  <li>cognitive science, ex. Think: fast and slow.</li>
+</ul>
+
+<h2 id="references">References</h2>
+
+<!-- <a class="citation" href="#"></a> -->
+
+<ol class="bibliography"><li><span id="davis2015commonsense">Davis, E., &amp; Marcus, G. (2015). Commonsense reasoning and commonsense knowledge in artificial intelligence. <i>Communications of the ACM</i>, <i>58</i>(9), 92–103.</span></li></ol>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="yuyangstatistics/researchlog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/researchlog/nlp/mrc/2021/01/21/commonse-reasoining-in-ai.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/researchlog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/researchlog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/researchlog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Statistics Ph.D. student/ Yu Yang. My blog about paper reading, research ideas, and code.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/yuyangstatistics" title="yuyangstatistics"><svg class="svg-icon grey"><use xlink:href="/researchlog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/yuyangstat" title="yuyangstat"><svg class="svg-icon grey"><use xlink:href="/researchlog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
