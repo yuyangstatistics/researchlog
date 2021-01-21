@@ -3,7 +3,7 @@ layout: post
 title: "Digest -- A Survey on Machine Reading Comprehension: Tasks, Evaluation Metrics, and Benchmark Datasets"
 date: 2021-01-19 19:51:00 -0500
 categories: [NLP, MRC]
-tags: [paper, mrc]
+tags: [survey, qa]
 comments: true
 ---
 

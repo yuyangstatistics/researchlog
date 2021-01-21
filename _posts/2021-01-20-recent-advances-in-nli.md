@@ -2,8 +2,8 @@
 layout: post
 title: "Digest -- Recent advances in natural language inference: A survey of benchmarks, resources, and approaches"
 date: 2021-01-20 16:34:00 -0500
-categories: [NLP, MRC]
-tags: [paper, mrc]
+categories: [NLI]
+tags: [survey, commonsense]
 comments: true
 ---
 
