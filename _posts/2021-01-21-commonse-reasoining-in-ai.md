@@ -28,20 +28,20 @@ This is a very good review paper on commonsense knowledge published on 2015. It 
 2. intuitive situations can be logically complex, ex. understand the behaviour and intention of a character in movies.
 3. plausible reasoning. Commonsense reasoning might be stochastic in nature.
 4. the long-tail issue: some categories show up rarely.
-    - the margin profit for building a KB would then be large.
+    - the margin profit for building a KB would then be small.
     - in my opinion, the long-tail issue depends on the abstraction level, which in turn is also difficult to set up consistently in a KB.
 5. difficulty to discern the proper level of abstraction
 6. projects that requires longer time to see the payoffs are usually less appealing. (What an insight!)
 
-### Objectives
+### Objectives of Commonsense Reasoning Research
 I pick up the ones that I feel are applicable to NLP here.
 - Plausible inference
-- Range of reasoning modes, such as explanation, gen- eralization, abstraction, analogy, and simulation. This can be a direction to work on.
+- Range of reasoning modes, such as explanation, generalization, abstraction, analogy, and simulation. This can be a direction to work on.
 - Analysis of fundamental domains, such as intuive physics and intuitive psychology.
 - Cognitive modeling. Utilize the theories of how human do commonsense reasoning.
 
 ### Approaches and Techniques
-To build a KB
+To build a KB:
 1. mathematically grounded
 2. use KB from informal sources, such as stories and anecdotes
 3. Web mining. The issue is severe confusions and inconsistencies.
@@ -49,7 +49,7 @@ To build a KB
 
 ### Future Directions
 1. integrate mathematical logic with Web mining.
-2. investigate how facts gathered from Web mining can con- strain the development of mathemati- cally grounded theories.
+2. investigate how facts gathered from Web mining can constrain the development of mathematically grounded theories.
 3. consider other modes of reasoning: analogy, fram-based reasoning, abstraction, conjecture, explanation.
 4. use cognitive science.
 
