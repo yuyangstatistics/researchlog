@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Digest – Deep Learning: A Critical Appraisal | Yu Yang’s Research Log</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Digest – Deep Learning: A Critical Appraisal" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Deep Learning: A Critical Appraisal (Marcus, 2018)." />
+<meta property="og:description" content="Deep Learning: A Critical Appraisal (Marcus, 2018)." />
+<link rel="canonical" href="https://yuyangyy.com/researchlog/dl/2021/01/22/a-critical-appraisal-on-dl.html" />
+<meta property="og:url" content="https://yuyangyy.com/researchlog/dl/2021/01/22/a-critical-appraisal-on-dl.html" />
+<meta property="og:site_name" content="Yu Yang’s Research Log" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-01-22T13:04:00-06:00" />
+<script type="application/ld+json">
+{"url":"https://yuyangyy.com/researchlog/dl/2021/01/22/a-critical-appraisal-on-dl.html","@type":"BlogPosting","headline":"Digest – Deep Learning: A Critical Appraisal","dateModified":"2021-01-22T13:04:00-06:00","datePublished":"2021-01-22T13:04:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://yuyangyy.com/researchlog/dl/2021/01/22/a-critical-appraisal-on-dl.html"},"description":"Deep Learning: A Critical Appraisal (Marcus, 2018).","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/researchlog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://yuyangyy.com/researchlog/feed.xml" title="Yu Yang's Research Log" /><link rel="shortcut icon" type="image/x-icon" href="/researchlog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/researchlog/">Yu Yang&#39;s Research Log</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/researchlog/about/">About Me</a><a class="page-link" href="/researchlog/search/">Search</a><a class="page-link" href="/researchlog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Digest -- Deep Learning: A Critical Appraisal</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-01-22T13:04:00-06:00" itemprop="datePublished">
+        Jan 22, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      1 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/researchlog/categories/#DL">DL</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><a href="https://arxiv.org/abs/1801.00631">Deep Learning: A Critical Appraisal</a>  <a class="citation" href="#marcus2018deep">(Marcus, 2018)</a>.</p>
+
+<h2 id="summary">Summary</h2>
+<p>Gary Marcus is a professor in Psychology and Neural Science at New York University. He is also the author of <a class="citation" href="#davis2015commonsense">(Davis &amp; Marcus, 2015)</a>. In this paper, he reflected on the current issues of Deep Learning and emphasized that DL is not a universal tool and we need to know what it is and is not and good for.</p>
+
+<h3 id="limits-on-the-scope-of-deep-learning">Limits on the scope of deep learning</h3>
+
+<ul>
+  <li>
+    <p><strong>Generalization</strong> comes in two flavors, interpolation between known examples, and extrapolation, which requires going beyond a space of known training examples.</p>
+  </li>
+  <li>Deep learning works best for classification problems with sufficient data samples in stable domains where examples are mapped in a constant way onto a limited set of categories.</li>
+  <li>Deep learning currently lacks a mechanism for learning abstractions through explicit, verbal definition.</li>
+  <li>Many adversarial studies show that deep learning solutions are often extremely superficial.</li>
+  <li>Language has a hierarchical structure, which deep learning so far has no natural way to deal with. This is a good point and might be helpful to model design. And a related question: can PCE learn the hierarchical structure?</li>
+  <li>Other issues: Open-ended inference, transparency, integration with prior knowledge, causation vs. correlation (even statistical techniques have limits in this.), an assumption of stable domains, not credible and no sound guarantees about performance.</li>
+</ul>
+
+<h3 id="future-direction">Future Direction</h3>
+<p>Integrate symbolic systems, which excels at inference and abstraction, with deep learning, which excels at perceptual classification.</p>
+
+<h2 id="related-topics-to-read">Related topics to read</h2>
+<ul>
+  <li>symbolic systems, representations of abstract relationships.</li>
+  <li>convolution, translational invariance</li>
+  <li>hierarchical structure in natural language. A paper showing the incapability of RNN: <a class="citation" href="#lake2018generalization">(Lake &amp; Baroni, 2018)</a>.</li>
+</ul>
+
+<h2 id="references">References</h2>
+
+<!-- <a class="citation" href="#"></a> -->
+
+<ol class="bibliography"><li><span id="marcus2018deep">Marcus, G. (2018). Deep learning: A critical appraisal. <i>ArXiv Preprint ArXiv:1801.00631</i>.</span></li>
+<li><span id="davis2015commonsense">Davis, E., &amp; Marcus, G. (2015). Commonsense reasoning and commonsense knowledge in artificial intelligence. <i>Communications of the ACM</i>, <i>58</i>(9), 92–103.</span></li>
+<li><span id="lake2018generalization">Lake, B., &amp; Baroni, M. (2018). Generalization without systematicity: On the compositional skills of sequence-to-sequence recurrent networks. <i>International Conference on Machine Learning</i>, 2873–2882.</span></li></ol>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="yuyangstatistics/researchlog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/researchlog/dl/2021/01/22/a-critical-appraisal-on-dl.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/researchlog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/researchlog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/researchlog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Statistics Ph.D. student/ Yu Yang. My blog about paper reading, research ideas, and code.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/yuyangstatistics" title="yuyangstatistics"><svg class="svg-icon grey"><use xlink:href="/researchlog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/yuyangstat" title="yuyangstat"><svg class="svg-icon grey"><use xlink:href="/researchlog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
