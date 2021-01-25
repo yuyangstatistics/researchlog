@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Digest – Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer | Yu Yang’s Research Log</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Digest – Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer (Raffel et al., 2020)." />
+<meta property="og:description" content="Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer (Raffel et al., 2020)." />
+<link rel="canonical" href="https://yuyangyy.com/researchlog/nlp/2021/01/25/t5.html" />
+<meta property="og:url" content="https://yuyangyy.com/researchlog/nlp/2021/01/25/t5.html" />
+<meta property="og:site_name" content="Yu Yang’s Research Log" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-01-25T08:16:00-06:00" />
+<script type="application/ld+json">
+{"url":"https://yuyangyy.com/researchlog/nlp/2021/01/25/t5.html","@type":"BlogPosting","headline":"Digest – Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer","dateModified":"2021-01-25T08:16:00-06:00","datePublished":"2021-01-25T08:16:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://yuyangyy.com/researchlog/nlp/2021/01/25/t5.html"},"description":"Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer (Raffel et al., 2020).","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/researchlog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://yuyangyy.com/researchlog/feed.xml" title="Yu Yang's Research Log" /><link rel="shortcut icon" type="image/x-icon" href="/researchlog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/researchlog/">Yu Yang&#39;s Research Log</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/researchlog/about/">About Me</a><a class="page-link" href="/researchlog/search/">Search</a><a class="page-link" href="/researchlog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Digest -- Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-01-25T08:16:00-06:00" itemprop="datePublished">
+        Jan 25, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      3 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/researchlog/categories/#NLP">NLP</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><a href="https://arxiv.org/abs/1910.10683">Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer</a>  <a class="citation" href="#raffel2020exploring">(Raffel et al., 2020)</a>.</p>
+
+<h2 id="summary">Summary</h2>
+<p>This paper is more engineering-oriented than method-oriented in my opinion. It doesn’t propose new model arcthitectures or training techniques. Yet the contribution of this paper is tremendous. Bearing in mind the goal of investigating the exact contribution of various architectures, training objectives, techniques, and training datasets on transfer learning in NLP, the authors perform a series of systematic experiments and show us the optimal and promising strategies to consider empirically. Afterwards, they combine all of their findings and propose a pre-trained model T5 and the dataset C4. Another highlight is that they use a unified text-to-text framework in the study, namely, transform every NLP tasks into a text-to-text.</p>
+
+<h3 id="t5-text-to-text-transfer-transformer">T5: Text-to-Text Transfer Transformer</h3>
+
+<p><img src="/researchlog/assets/img/posts/20210125-t5-figure1.png" alt="t5-framework" /></p>
+
+<p>The architecture in the framework is encoder-decoder, so every task should be transformed in an input-output format, where both are text. To help the model identify the specific task to perform, the task name is appended at the beginning of the input.</p>
+
+<h3 id="experiment-results">Experiment Results</h3>
+<p><strong>Architectures</strong>: three types are compared: encoder-decoder, decoder-only language models, decoder-only prefix language models. Controlling the number of parameters, encoder-decoder is the best across all downstream tasks.</p>
+
+<p><strong>Unsupervised Objectives</strong>: the flow chart below shows their exploration and the table illustrates these objectives by an example (the captions are include details about the experiment). They choose the corrupted span denoising objective in that the computation cost can be reduced while maintaining comparable performances as the baseline.</p>
+
+<p><img src="/researchlog/assets/img/posts/20210125-t5-figure5.png" alt="flow-chart" /></p>
+
+<p><img src="/researchlog/assets/img/posts/20210125-t5-table3.png" alt="objective-description" /></p>
+
+<p>A detailed illustration of the objective is as below.
+<img src="/researchlog/assets/img/posts/20210125-t5-figure2.png" alt="corrupted-span" /></p>
+
+<p><strong>Pre-training Data Set</strong>: they find that pre-training on in-domain unlabeld data can improve performance on downstream tasks, for example, SQuAD, which is based on Wikipedia. Also, with regard to the data set size, they find that some amount of repetition of the pre-training data might not be harmful.</p>
+
+<p><img src="/researchlog/assets/img/posts/20210125-t5-table9.png" alt="data-size-comparison" /></p>
+
+<p><strong>Training Strategy</strong>: they experiment three fine-tuning strategies and find that fine-tuning all parameters is the best. They also consider multi-task learning, where they mix the unsupervised task with the other tasks and explore three strategies of settting the proportion of data coming from each task. It turns out first pre-training on the unsupervised task and then fine-tuning on the downstream tasks outperforms the multi-task training strategies. They then combine multi-task learning with fine-tuning and compare different strategies as below. Since multi-task pre-training + fine-tuning has similar performance as unsupervise pre-training + fine-tuning, and that it enables us to monitor the “downstream” performance for the entire duration of traininng, instead of just fine-tuning, the authors use this strategy in their final T5 model.</p>
+
+<p><img src="/researchlog/assets/img/posts/20210125-t5-table12.png" alt="mlt-finetune" /></p>
+
+<p><strong>Scaling</strong>: they focus on addressing this question: “You were just given 4× more compute. How should you use it?” They find that in general, increasing the model size resulted in an additional bump in performance compared to solely increasing the training time or batch size. And ensembling provides an orthogonal and effective means of improving performance through scale.</p>
+
+<p><img src="/researchlog/assets/img/posts/20210125-t5-table13.png" alt="scaling-comparison" /></p>
+
+<p>In the end, they put together all of their findings, combine the optimal settings, and come up with T5, a pre-trained model with state-of-art performances on many leaderboards.</p>
+
+<h2 id="related-topics-to-read">Related topics to read</h2>
+<ul>
+  <li>Multi-task Learning: <a href="https://ruder.io/multi-task/">An Overview of Multi-Task Learning in Deep Neural Networks</a></li>
+</ul>
+
+<h2 id="references">References</h2>
+
+<!-- <a class="citation" href="#"></a> -->
+
+<ol class="bibliography"><li><span id="raffel2020exploring">Raffel, C., Shazeer, N., Roberts, A., Lee, K., Narang, S., Matena, M., Zhou, Y., Li, W., &amp; Liu, P. J. (2020). Exploring the limits of transfer learning with a unified text-to-text transformer. <i>Journal of Machine Learning Research</i>, <i>21</i>(140), 1–67.</span></li></ol>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="yuyangstatistics/researchlog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/researchlog/nlp/2021/01/25/t5.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/researchlog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/researchlog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/researchlog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Statistics Ph.D. student/ Yu Yang. My blog about paper reading, research ideas, and code.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/yuyangstatistics" title="yuyangstatistics"><svg class="svg-icon grey"><use xlink:href="/researchlog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/yuyangstat" title="yuyangstat"><svg class="svg-icon grey"><use xlink:href="/researchlog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
