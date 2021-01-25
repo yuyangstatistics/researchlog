@@ -26,7 +26,7 @@ Gary Marcus is a professor in Psychology and Neural Science at New York Universi
 ### Future Direction
 Integrate symbolic systems, which excels at inference and abstraction, with deep learning, which excels at perceptual classification.
 
-
+ 
 ## Related topics to read
 - symbolic systems, representations of abstract relationships.
 - convolution, translational invariance
