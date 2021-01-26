@@ -96,13 +96,15 @@ window.onload = wrap_img;
     <p><a href="https://arxiv.org/abs/1910.10683">Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer</a>  <a class="citation" href="#raffel2020exploring">(Raffel et al., 2020)</a>.</p>
 
 <h2 id="summary">Summary</h2>
-<p>This paper is more engineering-oriented than method-oriented in my opinion. It doesn’t propose new model arcthitectures or training techniques. Yet the contribution of this paper is tremendous. Bearing in mind the goal of investigating the exact contribution of various architectures, training objectives, techniques, and training datasets on transfer learning in NLP, the authors perform a series of systematic experiments and show us the optimal and promising strategies to consider empirically. Afterwards, they combine all of their findings and propose a pre-trained model T5 and the dataset C4. Another highlight is that they use a unified text-to-text framework in the study, namely, transform every NLP tasks into a text-to-text.</p>
+<p>This paper is more engineering-oriented than method-oriented in my opinion. It doesn’t propose new model arcthitectures or training techniques. Yet the contribution of this paper is tremendous. With the goal of investigating the exact contribution of various architectures, training objectives, techniques, and training datasets on transfer learning in NLP, the authors perform a series of systematic experiments and show us the optimal and promising strategies to consider empirically. Afterwards, they combine all of their findings and propose a pre-trained model T5 and the dataset C4. Another highlight is that they use a unified text-to-text framework in the study, namely, transform every NLP tasks into a text-to-text.</p>
+
+<p>The logic to use a unified framework, to my understanding, is that if it can achieve good results across a wide range of tasks, then it may be implied that the model has indeed learned something universal in natural languages.</p>
 
 <h3 id="t5-text-to-text-transfer-transformer">T5: Text-to-Text Transfer Transformer</h3>
 
 <p><img src="/researchlog/assets/img/posts/20210125-t5-figure1.png" alt="t5-framework" /></p>
 
-<p>The architecture in the framework is encoder-decoder, so every task should be transformed in an input-output format, where both are text. To help the model identify the specific task to perform, the task name is appended at the beginning of the input.</p>
+<p>The architecture in the framework is encoder-decoder, so every task should be transformed in an input-output format, where both are text. To help the model identify the specific task to perform, the task name is appended at the beginning of the input. The excellence of T5 comes from the combination of optimal strategies with respect to multiple aspects, including encoder-decoder architecture, corrupting span denoising objective, C4 pre-training data set, Multi-task pre-training + fine-tuning on downstream tasks, and scaling in terms of model sizes and training time.</p>
 
 <h3 id="experiment-results">Experiment Results</h3>
 <p><strong>Architectures</strong>: three types are compared: encoder-decoder, decoder-only language models, decoder-only prefix language models. Controlling the number of parameters, encoder-decoder is the best across all downstream tasks.</p>
