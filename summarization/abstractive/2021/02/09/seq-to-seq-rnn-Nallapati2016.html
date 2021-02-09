@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Digest – Abstractive text summarization using sequence-to-sequence RNNs and beyond | Yu Yang’s Research Log</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Digest – Abstractive text summarization using sequence-to-sequence RNNs and beyond" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Abstractive text summarization using sequence-to-sequence RNNs and beyond (Nallapati et al., 2016)." />
+<meta property="og:description" content="Abstractive text summarization using sequence-to-sequence RNNs and beyond (Nallapati et al., 2016)." />
+<link rel="canonical" href="https://yuyangyy.com/researchlog/summarization/abstractive/2021/02/09/seq-to-seq-rnn-Nallapati2016.html" />
+<meta property="og:url" content="https://yuyangyy.com/researchlog/summarization/abstractive/2021/02/09/seq-to-seq-rnn-Nallapati2016.html" />
+<meta property="og:site_name" content="Yu Yang’s Research Log" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-02-09T09:18:00-06:00" />
+<script type="application/ld+json">
+{"url":"https://yuyangyy.com/researchlog/summarization/abstractive/2021/02/09/seq-to-seq-rnn-Nallapati2016.html","@type":"BlogPosting","headline":"Digest – Abstractive text summarization using sequence-to-sequence RNNs and beyond","dateModified":"2021-02-09T09:18:00-06:00","datePublished":"2021-02-09T09:18:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://yuyangyy.com/researchlog/summarization/abstractive/2021/02/09/seq-to-seq-rnn-Nallapati2016.html"},"description":"Abstractive text summarization using sequence-to-sequence RNNs and beyond (Nallapati et al., 2016).","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/researchlog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://yuyangyy.com/researchlog/feed.xml" title="Yu Yang's Research Log" /><link rel="shortcut icon" type="image/x-icon" href="/researchlog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/researchlog/">Yu Yang&#39;s Research Log</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/researchlog/about/">About Me</a><a class="page-link" href="/researchlog/search/">Search</a><a class="page-link" href="/researchlog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Digest -- Abstractive text summarization using sequence-to-sequence RNNs and beyond</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-02-09T09:18:00-06:00" itemprop="datePublished">
+        Feb 9, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      2 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/researchlog/categories/#Summarization">Summarization</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/researchlog/categories/#Abstractive">Abstractive</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><a href="https://arxiv.org/abs/1602.06023">Abstractive text summarization using sequence-to-sequence RNNs and beyond</a>  <a class="citation" href="#nallapati2016abstractive">(Nallapati et al., 2016)</a>.</p>
+
+<h2 id="summary">Summary</h2>
+<p>This paper uses the sequence-to-sequence RNN framework with attention as the baseline and proposes a model that is specially designed to tackle the unique patterns of abstractive text summarization. Their model is able to model key-words, to capture the hierarchy of sentence-to-word structure, and to deal with OOV words in summarization. Another contribution of this paper is that they transform the CNN/Daily Mail datasets from a question-answering dataset to a dataset for text summarization, which greatly facilitate later research work.</p>
+
+<ul>
+  <li>How did they use model architectures to tackle summarization specific issues?</li>
+  <li>What is the training objective?</li>
+  <li>What problems remain unsolved?</li>
+</ul>
+
+<h3 id="model-architecture">Model Architecture</h3>
+<p>In summarization, there are several challenges:</p>
+<ol>
+  <li>identify the key concepts and key entities</li>
+  <li>model rare or unseen words, ex. the name of a particular product</li>
+  <li>capture the document hierarchy, namely, a document is made up of sentences, which are made up of words.</li>
+</ol>
+
+<p>To tackle the above mentioned challenges, the authors proposed several strategies corresponding.</p>
+<ol>
+  <li>Incorporate the linguistic features in the embedding vectors, such as NER, TF, and IDF.</li>
+  <li>Use Generator-Pointer network, where generator is used for generating words in the vocabulary while pointer intends to copy words directly from the source text. This design is further improved later by  <a class="citation" href="#see2017get">(See et al., 2017)</a>.</li>
+  <li>Use hierarchical attention to model the hierarchy of documents.</li>
+</ol>
+
+<p>The main idea of the three strategies is fully illustrated in the diagrams as below.</p>
+
+<p><img src="/researchlog/assets/img/posts/20210209-abstract-fig1.png" alt="feature-rich-encoder" /></p>
+
+<p><img src="/researchlog/assets/img/posts/20210209-abstract-fig2.png" alt="generator-pointer" /></p>
+
+<p><img src="/researchlog/assets/img/posts/20210209-abstract-fig3.png" alt="hierarchy" /></p>
+
+<h3 id="training-objective">Training Objective</h3>
+<p>The training objective is the conditonal log-likelihood plus additional regularization penalties.</p>
+
+<p><img src="/researchlog/assets/img/posts/20210209-abstract-objective.png" alt="objective" /></p>
+
+<p>where y and x are the summary and document words respectively, and $g_i$ is an indicator function that is set to 0 whenever the word at position $i$ in the summary is OOV w.r.t. the decoder vocabulary.</p>
+
+<h3 id="unsolved-problems">Unsolved problems</h3>
+
+<!-- ## Related topics to read
+-  -->
+
+<h2 id="references">References</h2>
+
+<!-- <a class="citation" href="#"></a> -->
+
+<ol class="bibliography"><li><span id="nallapati2016abstractive">Nallapati, R., Zhou, B., dos Santos, C., Gu̇lçehre Çağlar, &amp; Xiang, B. (2016). Abstractive Text Summarization using Sequence-to-sequence RNNs and Beyond. <i>Proceedings of The 20th SIGNLL Conference on Computational Natural Language Learning</i>, 280–290.</span></li>
+<li><span id="see2017get">See, A., Liu, P. J., &amp; Manning, C. D. (2017). Get To The Point: Summarization with Pointer-Generator Networks. <i>Proceedings of the 55th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)</i>, 1073–1083.</span></li></ol>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="yuyangstatistics/researchlog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/researchlog/summarization/abstractive/2021/02/09/seq-to-seq-rnn-Nallapati2016.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/researchlog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/researchlog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/researchlog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Statistics Ph.D. student/ Yu Yang. My blog about paper reading, research ideas, and code.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/yuyangstatistics" title="yuyangstatistics"><svg class="svg-icon grey"><use xlink:href="/researchlog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/yuyangstat" title="yuyangstat"><svg class="svg-icon grey"><use xlink:href="/researchlog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
