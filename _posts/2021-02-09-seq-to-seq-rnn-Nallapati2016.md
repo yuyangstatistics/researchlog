@@ -17,6 +17,8 @@ This paper uses the sequence-to-sequence RNN framework with attention as the bas
 - What problems remain unsolved?
 
 ### Model Architecture
+The sequence-to-sequence encoder-decoder framework is borrowed from NMT.
+
 In summarization, there are several challenges:
 1. identify the key concepts and key entities
 2. model rare or unseen words, ex. the name of a particular product
@@ -43,7 +45,7 @@ The training objective is the conditonal log-likelihood plus additional regulari
 where y and x are the summary and document words respectively, and $g_i$ is an indicator function that is set to 0 whenever the word at position $i$ in the summary is OOV w.r.t. the decoder vocabulary.
 
 ### Unsolved problems
-
+One interesting thing is that although the model in {% cite chopra2016abstractive %} is less sophisticated, where the encoder uses convolutional attention and the decoder is the plain RNN, its performance can beat the much complex system proposed in this paper w.r.t. some criteria. More effort should be put on to investigate the reasons.
 
 <!-- ## Related topics to read
 -  -->
