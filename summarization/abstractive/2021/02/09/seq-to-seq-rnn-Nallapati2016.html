@@ -108,6 +108,8 @@ window.onload = wrap_img;
 </ul>
 
 <h3 id="model-architecture">Model Architecture</h3>
+<p>The sequence-to-sequence encoder-decoder framework is borrowed from NMT.</p>
+
 <p>In summarization, there are several challenges:</p>
 <ol>
   <li>identify the key concepts and key entities</li>
@@ -138,6 +140,7 @@ window.onload = wrap_img;
 <p>where y and x are the summary and document words respectively, and $g_i$ is an indicator function that is set to 0 whenever the word at position $i$ in the summary is OOV w.r.t. the decoder vocabulary.</p>
 
 <h3 id="unsolved-problems">Unsolved problems</h3>
+<p>One interesting thing is that although the model in (missing reference) is less sophisticated, where the encoder uses convolutional attention and the decoder is the plain RNN, its performance can beat the much complex system proposed in this paper w.r.t. some criteria. More effort should be put on to investigate the reasons.</p>
 
 <!-- ## Related topics to read
 -  -->
