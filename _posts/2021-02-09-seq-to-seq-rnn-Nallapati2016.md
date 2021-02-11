@@ -45,7 +45,7 @@ The training objective is the conditonal log-likelihood plus additional regulari
 where y and x are the summary and document words respectively, and $g_i$ is an indicator function that is set to 0 whenever the word at position $i$ in the summary is OOV w.r.t. the decoder vocabulary.
 
 ### Unsolved problems
-One interesting thing is that although the model in {% cite chopra2016abstractive %} is less sophisticated, where the encoder uses convolutional attention and the decoder is the plain RNN, its performance can beat the much complex system proposed in this paper w.r.t. some criteria. More effort should be put on to investigate the reasons.
+One interesting thing is that although the model in {% cite chopra2016abstractive %} is less sophisticated, where the encoder uses convolutional attention and the decoder is the plain RNN, its performance can beat the much more complex system proposed in this paper w.r.t. some criteria. More effort should be put on to investigate the reasons.
 
 <!-- ## Related topics to read
 -  -->
